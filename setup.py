@@ -4,6 +4,9 @@ VERSION = "1.0.0"
 
 
 setup(
+    description="A 'quote' content type for Plone",
+    long_description=open("README.txt").read() + '\n' +
+        open("HISTORY.txt").read(),
     maintainer="Alex Clark",
     maintainer_email="aclark@aclark.net",
     name='Products.ifQuotes',

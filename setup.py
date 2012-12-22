@@ -6,7 +6,7 @@ VERSION = "1.0.1"
 setup(
     description="A 'quote' content type for Plone",
     include_package_data=True,
-    long_description=open("README.txt").read() + '\n' +
+    long_description=open("README.rst").read() + '\n' +
         open("HISTORY.txt").read(),
     maintainer="Alex Clark",
     maintainer_email="aclark@aclark.net",

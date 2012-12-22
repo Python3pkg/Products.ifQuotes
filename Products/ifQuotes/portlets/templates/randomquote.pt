@@ -12,15 +12,30 @@
         <span class="portletTopRight"></span>
     </dt>
 
-    <dd class="portletItem"
-        tal:define="quote view/random_quote">
-            <span class="quotePhrase"> <span metal:use-macro="python:quote.widget('quote', mode='view')" /></span><br>
-            <span class="author">- <span metal:use-macro="python:quote.widget('author', mode='view')" /></span>
-        <tal:corners condition="not:view/has_footer">
-            <span class="portletBottomLeft"></span>
-            <span class="portletBottomRight"></span>
-        </tal:corners>
-    </dd>
+    <tal:condition condition="view/random_quote">
+        <dd class="portletItem"
+            tal:define="quote view/random_quote"> 
+                <span class="quotePhrase"> <span metal:use-macro="python:quote.widget('quote', mode='view')" /></span><br>
+                <span class="author">- <span metal:use-macro="python:quote.widget('author', mode='view')" /></span>
+            <tal:corners condition="not:view/has_footer">
+                <span class="portletBottomLeft"></span>
+                <span class="portletBottomRight"></span>
+            </tal:corners>
+        </dd>
+    </tal:condition>
+
+    <tal:condition condition="not: view/random_quote">
+        <dd class="portletItem" 
+            tal:define="quote view/random_quote"> 
+                <span class="quotePhrase">"Nothing"</span><br>
+                <span class="author">- Nobody</span><br /><br />
+                <strong>To see quotes here: add a quote folder, then add quotes inside your quote folder.</strong>
+            <tal:corners condition="not:view/has_footer">
+                <span class="portletBottomLeft"></span>
+                <span class="portletBottomRight"></span>
+            </tal:corners>
+        </dd>
+    </tal:condition>
 
     <dd class="portletFooter" tal:condition="view/has_footer">
         <span class="portletBotomLeft"></span>

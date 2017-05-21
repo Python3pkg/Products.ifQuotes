@@ -30,14 +30,14 @@ class TestPortlet(ifQuotesTestCase):
     def testInvokeAddview(self):
         portlet = getUtility(IPortletType, name='RandomQuote')
         mapping = self.portal.restrictedTraverse('++contextportlets++plone.rightcolumn')
-        for m in mapping.keys():
+        for m in list(mapping.keys()):
             del mapping[m]
         addview = mapping.restrictedTraverse('+/' + portlet.addview)
 
         addview.createAndAdd(data={})
 
         self.assertEquals(len(mapping), 1)
-        self.failUnless(isinstance(mapping.values()[0], quotes.Assignment))
+        self.failUnless(isinstance(list(mapping.values())[0], quotes.Assignment))
 
     def testInvokeEditView(self):
         mapping = PortletAssignmentMapping()
@@ -81,12 +81,12 @@ class TestRenderer(ifQuotesTestCase):
         return getMultiAdapter((context, request, view, manager, assignment), IPortletRenderer)
 
     def test_header(self):
-        r = self.renderer(context=self.portal.cf1, assignment=quotes.Assignment(header=u"this is the header"))
-        self.assertEquals(u"this is the header",r.header())
+        r = self.renderer(context=self.portal.cf1, assignment=quotes.Assignment(header="this is the header"))
+        self.assertEquals("this is the header",r.header())
 
     def test_footer(self):
-        r = self.renderer(context=self.portal.cf1, assignment=quotes.Assignment(footer=u"this is the footer"))
-        self.assertEquals(u"this is the footer",r.footer())
+        r = self.renderer(context=self.portal.cf1, assignment=quotes.Assignment(footer="this is the footer"))
+        self.assertEquals("this is the footer",r.footer())
 
     def test_more_url(self):
         r = self.renderer(context=self.portal.cf1, assignment=quotes.Assignment(more_url="http://foo.com/foo"))

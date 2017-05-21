@@ -36,8 +36,8 @@ __docformat__ = 'plaintext'
 # Additional
 
 # Classes
-import QuoteFolder
-import Quote
+from . import QuoteFolder
+from . import Quote
 
 ##code-section init-module-footer #fill in your manual code here
 ##/code-section init-module-footer

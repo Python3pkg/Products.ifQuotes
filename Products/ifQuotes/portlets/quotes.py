@@ -18,26 +18,26 @@ from plone.memoize.instance import memoize
 
 class IRandomQuote(IPortletDataProvider):
     """ Interface for random quote portlet """
-    header = schema.TextLine(title=_(u"Portlet header"),
-                             description=_(u"Title of the rendered portlet"),
+    header = schema.TextLine(title=_("Portlet header"),
+                             description=_("Title of the rendered portlet"),
                              required=True)
 
-    footer = schema.TextLine(title=_(u"Portlet footer"),
-                             description=_(u"Text to be shown in the footer"),
+    footer = schema.TextLine(title=_("Portlet footer"),
+                             description=_("Text to be shown in the footer"),
                              required=False)
 
-    more_url = schema.ASCIILine(title=_(u"Details link"),
-                                  description=_(u"If given, the header and footer "
+    more_url = schema.ASCIILine(title=_("Details link"),
+                                  description=_("If given, the header and footer "
                                                   "will link to this URL."),
                                   required=False)
 
 class Assignment(base.Assignment):
     implements(IRandomQuote)
-    header = u''
-    footer = u''
+    header = ''
+    footer = ''
     more_url = ''
 
-    def __init__(self, header=u"", footer=u"", more_url=''):
+    def __init__(self, header="", footer="", more_url=''):
         self.header = header
         self.footer = footer
         self.more_url = more_url
@@ -73,14 +73,14 @@ class Renderer(base.Renderer):
 
 class AddForm(base.AddForm):
     form_fields = form.Fields(IRandomQuote)
-    label = _(u"Add New Random Quote")
-    description = _(u"This portlet displays a random Quote.")
+    label = _("Add New Random Quote")
+    description = _("This portlet displays a random Quote.")
 
     def create(self, data):
         return Assignment(**data)
 
 class EditForm(base.EditForm):
     form_fields = form.Fields(IRandomQuote)
-    label = _(u"Edit Random Quote")
-    description = _(u"This portlet displays a random Quote.")
+    label = _("Edit Random Quote")
+    description = _("This portlet displays a random Quote.")
 
